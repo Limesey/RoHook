@@ -18,7 +18,7 @@ end
 local module = {}
 
 -- Your webhook's URL
-module.webhookUrl = "https://canary.discordapp.com/api/webhooks/682537382519635974/VfS2r9dRsPW4Q-Ti4FPhnoeWY1KdeLeS6F4bTA2oqWzKrqqQQ2qII0UVJtouBnHml52P"
+module.webhookUrl = nil
 
 function module.newMessage(message)
 	message = message
