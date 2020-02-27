@@ -1,4 +1,3 @@
--- services
 local httpService = game:GetService("HttpService")
 
 local function getDate()
