@@ -1,3 +1,6 @@
+-- Script type: Module
+-- Writen by github.com/Limesey, @Norbunny on Roblox.
+
 local httpService = game:GetService("HttpService")
 
 local function getDate()
