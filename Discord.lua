@@ -1,6 +1,7 @@
 -- Script type: Module
 -- Writen by github.com/Limesey, @Norbunny on Roblox.
 
+-- services
 local httpService = game:GetService("HttpService")
 
 local function getDate()
@@ -12,16 +13,16 @@ local function getDate()
 end
 
 local function rgbToDec(rgb)
-	local dec = rgb.B * 65536 + rgb.G * 256 + rgb.R
+	local rgbTotal = rgb.R * 65536 + rgb.G * 256 + rgb.B
 	
-	return dec
+	return rgbTotal
 end
 
 
 local module = {}
 
 -- Your webhook's URL
-module.webhookUrl = nil
+module.webhookUrl = ""
 
 function module.newMessage(message)
 	message = message
