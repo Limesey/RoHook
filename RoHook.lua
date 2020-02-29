@@ -18,17 +18,33 @@ local function rgbToDec(rgb)
 	return rgbTotal
 end
 
-
 local module = {}
 
 module.webhookConfig = {
-	webhookUrl = "",
+	webhookUrl = "https://canary.discordapp.com/api/webhooks/682537382519635974/VfS2r9dRsPW4Q-Ti4FPhnoeWY1KdeLeS6F4bTA2oqWzKrqqQQ2qII0UVJtouBnHml52P",
 	overrideUsername = false,
 	overrideAvatar = false,
 	
-	username = "",
-	avatar = "",
+	username = nil,
+	avatar = nil
 }
+
+
+local function getUsername()
+	local config = module.webhookConfig
+	
+	if(config.overrideUsername) then
+		return config.username
+	end
+end
+
+local function getAvatar()
+	local config = module.webhookConfig
+	
+	if(config.overrideAvatar) then
+		return config.avatar
+	end
+end
 
 function module.newMessage(message)
 	message = message
@@ -36,8 +52,8 @@ function module.newMessage(message)
 	local content = {
 		content = message,
 		embeds = {},
-		avatar_url = "",
-		username=  "",
+		username =  getUsername() or "",
+		avatar_url = getAvatar() or "",
 	}
 	
 	function content.setWebhookUsername(name)
