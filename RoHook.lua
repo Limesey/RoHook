@@ -21,39 +21,54 @@ end
 
 local module = {}
 
--- Your webhook's URL
-module.webhookUrl = ""
+module.webhookConfig = {
+	webhookUrl = "https://canary.discordapp.com/api/webhooks/682537382519635974/VfS2r9dRsPW4Q-Ti4FPhnoeWY1KdeLeS6F4bTA2oqWzKrqqQQ2qII0UVJtouBnHml52P",
+}
 
 function module.newMessage(message)
 	message = message
 	
 	local content = {
-		["content"] = message,
-		["embeds"] = {}
+		content = message,
+		embeds = {},
+		avatar_url = "",
+		username=  "",
 	}
+	
+	function content.setWebhookUsername(name)
+		if(not name) then error("Name cannot be nil.") end
+		
+		content.username = name
+	end
+	
+	function content.setWebhookAvatar(url)
+		if(not url) then error("URL cannot be nil.") end
+		
+		content.avatar_url = url
+	end
 	
 	function content.addEmbed(title, description)
 		local embed = {
-			["title"] = title,
-			["description"] = description,
-			["color"] = 0,
-			["fields"] = {},
-			["thumbnail"] = {
-				["url" ]= ""
+			title = title,
+			description = description,
+			color = 0,
+			fields = {},
+			thumbnail = {
+				url= ""
 			},
-			["image"] = {
-				["url"] = ""
+			image= {
+				url = ""
 			},
-			["author"] = {
-				["name"] = "",
-				["url"] = "",
-				["icon_url"] = ""
+			 author  = {
+				 name  = "",
+				 url  = "",
+				 icon_url  = ""
 			},
-			["footer"] = {
-				["text"] = "",
-				["icon_url"] = ""
+			 footer  = {
+				 text  = "",
+				 icon_url  = ""
 			},
-			["timestamp"] = "" --"YYYY-MM-DDTHH:MM:SS.MSSZ"
+			 timestamp  = "" --"YYYY-MM-DDTHH:MM:SS.MSSZ"
 		}
 		
 		table.insert(content.embeds, embed)
@@ -63,13 +78,13 @@ function module.newMessage(message)
 		end
 		
 		function embed.addField(name, value, inline)
-			if(not name or not value) then error("Name and value can not be nil") end
+			if(not name or not value) then error("Name and value cannot be nil") end
 			inline = inline or false
 			
 			local field = {
-				["name"] = name,
-				["value"] = value,
-				["inline"] = inline
+				 name  = name,
+				 value  = value,
+				 inline  = inline
 			}
 			
 			table.insert(embed.fields, field)
@@ -77,26 +92,26 @@ function module.newMessage(message)
 		end
 		
 		function embed.setAuthor(name, url, icon_url)
-			if(not name and icon_url) then error("Name can not be nil") end
+			if(not name and icon_url) then error("Name cannot be nil") end
 			embed.author.name = name
 			embed.author.url = url
 			embed.author.icon_url = icon_url
 		end
 		
 		function embed.setThumbnail(url)
-			if(not url) then error("URL can not be nil") end
+			if(not url) then error("URL cannot be nil") end
 			
 			embed.thumbnail.url = url
 		end
 		
 		function embed.setImage(url)
-			if(not url) then error("URL can not be nil") end
+			if(not url) then error("URL cannot be nil") end
 			
 			embed.image.url = url
 		end
 		
 		function embed.setFooter(text, url)
-			if(not text) then error("Text can not be nil!") end
+			if(not text) then error("Text cannot be nil!") end
 			
 			embed.footer.text = text
 			embed.footer.icon_url = url
@@ -117,7 +132,7 @@ function module:send(content)
 	content = httpService:JSONEncode(content)
 	
 	local success, data = pcall(function()
-		return httpService:PostAsync(module.webhookUrl, content)
+		return httpService:PostAsync(module.webhookConfig.webhookUrl, content)
 	end)
 	
 	return success, data
