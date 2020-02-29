@@ -21,7 +21,7 @@ end
 local module = {}
 
 module.webhookConfig = {
-	webhookUrl = "https://canary.discordapp.com/api/webhooks/682537382519635974/VfS2r9dRsPW4Q-Ti4FPhnoeWY1KdeLeS6F4bTA2oqWzKrqqQQ2qII0UVJtouBnHml52P",
+	webhookUrl = "",
 	overrideUsername = false,
 	overrideAvatar = false,
 	
