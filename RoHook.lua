@@ -4,6 +4,17 @@
 -- services
 local httpService = game:GetService("HttpService")
 
+local module = {}
+
+module.webhookConfig = {
+	webhookUrl = "",
+	overrideUsername = false,
+	overrideAvatar = false,
+	
+	username = nil,
+	avatar = nil
+}
+
 local function getDate()
 	local date = os.date("!*t")
 	
@@ -17,17 +28,6 @@ local function rgbToDec(rgb)
 	
 	return rgbTotal
 end
-
-local module = {}
-
-module.webhookConfig = {
-	webhookUrl = "",
-	overrideUsername = false,
-	overrideAvatar = false,
-	
-	username = nil,
-	avatar = nil
-}
 
 
 local function getUsername()
