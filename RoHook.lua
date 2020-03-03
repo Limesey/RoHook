@@ -18,8 +18,15 @@ module.webhookConfig = {
 local function getDate()
 	local date = os.date("!*t")
 	
-	local str = string.format("%s-%s-%sT%s:%s:%s.000Z", date.year, date.month, date.day, date.hour, date.min, date.sec)
+	local function format(i)
+		if(string.len(i) == 1) then
+			return string.format("0%s", i)
+		else
+			return i
+		end
+	end
 	
+	local str = string.format("%s-%s-%sT%s:%s:%s.000Z", date.year, date.month, date.day, format(date.hour), format(date.min), format(date.sec))
 	return str
 end
 
