@@ -80,6 +80,16 @@ function module.newMessage(message)
 	end
 	
 	function content.addEmbed(title, description)
+		if(title and string.len(title) > 256) then
+			warn("Title cannot be longer than 265 characters.")
+			title = string.sub(title, 1, 256)
+		end
+		
+		if(description and string.len(description > 2048)) then
+			warn("Description cannot be longer than 2048 characters.")
+			description = string.sub(description, 1, 2048)
+		end
+		
 		local embed = {
 			title = title,
 			description = description,
@@ -102,16 +112,6 @@ function module.newMessage(message)
 			},
 			 timestamp  = "" --"YYYY-MM-DDTHH:MM:SS.MSSZ"
 		}
-		
-		if(title and string.len(title) > 256) then
-			warn("Title cannot be longer than 265 characters.")
-			title = string.sub(title, 1, 256)
-		end
-		
-		if(description and string.len(description > 2048)) then
-			warn("Description cannot be longer than 2048 characters.")
-			description = string.sub(description, 1, 2048)
-		end
 		
 		table.insert(content.embeds, embed)
 		
