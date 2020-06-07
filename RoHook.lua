@@ -85,7 +85,7 @@ function module.newMessage(message)
 			title = string.sub(title, 1, 256)
 		end
 		
-		if(description and string.len(description > 2048)) then
+		if(description and string.len(description) > 2048) then
 			warn("Description cannot be longer than 2048 characters.")
 			description = string.sub(description, 1, 2048)
 		end
@@ -195,8 +195,10 @@ function module:send(content)
 	
 	content = httpService:JSONEncode(content)
 	
+	print(content)
+	
 	local success, data = pcall(function()
-		return httpService:PostAsync(module.webhookConfig.webhookUrl, content)
+		--return httpService:PostAsync(module.webhookConfig.webhookUrl, content)
 	end)
 	
 	return success, data
