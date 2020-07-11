@@ -195,10 +195,8 @@ function module:send(content)
 	
 	content = httpService:JSONEncode(content)
 	
-	print(content)
-	
 	local success, data = pcall(function()
-		--return httpService:PostAsync(module.webhookConfig.webhookUrl, content)
+		return httpService:PostAsync(module.webhookConfig.webhookUrl, content)
 	end)
 	
 	return success, data
