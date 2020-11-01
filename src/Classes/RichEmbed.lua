@@ -25,7 +25,8 @@ function RichEmbed:setTimestamp()
     self.timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ")
 end
 
-function RichEmbed:setColor()
+function RichEmbed:setColor(rgb)
+    self.color = rgb.R * 65536 + rgb.G * 256 + rgb.B
 end
 
 function RichEmbed:setFooter(text, iconUrl)
