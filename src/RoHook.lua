@@ -6,16 +6,18 @@ local httpService = game:GetService("HttpService")
 local RoHook = {}
 RoHook.__index = RoHook
 
-function RoHook.create(url, username, avatar)
-    local hook = {}
+function RoHook.new(url, username, avatar)
+    assert(url, "URL cannot be nil.")
+    
+    local self = {
+        url = url,
+        username = username,
+        avatarUrl = avatar
+    }
 
-    setmetatable(hook, RoHook)
+    setmetatable(self, RoHook)
 
-    hook.avatarUrl = avatar or ""
-    hook.username = username or ""
-    hook.url = url
-
-    return hook
+    return self
 end
 
 function RoHook:setUsername()
@@ -25,14 +27,38 @@ end
 function RoHook:setAvatar(url)
 end
 
-function RoHook.send(data)
+function RoHook:send(data)
     local request = nil
 
     if data.ClassName == "RichEmbed" then
-        print("RichEmbed")
+        request = {
+            embeds = {data},
+        }
+
+        print("Sending RichEmbed")
 
     elseif data.ClassName == "Message" then
-        print("Message")
+        print("Sending Message")
+    end
+
+    local success, res = pcall(function()
+        local response = httpService:RequestAsync({
+            Url = self.url,
+            Method = "POST",
+            Headers = {
+                ["Content-Type"] = "application/json" 
+            },
+    
+            Body = httpService:JSONEncode(request)
+        })
+
+        return response
+    end)
+
+    if not success then
+        error(string.format("POST request failed: %s", res))
+    else
+        assert(res.Success, string.format("Server replied with %s - %s", res.StatusCode, res.StatusMessage))
     end
 end
 
