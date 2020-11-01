@@ -29,28 +29,41 @@ function RichEmbed:setColor()
 end
 
 function RichEmbed:setFooter(text, iconUrl)
-    -- footer.text is limited to 2048 characters
+    assert(text, "Text cannot be nil.")
+    assert(string.len(text) <= 2048, "Text cannot be longer than 2048 characters")
+
+    self.footer = {
+        text = text,
+        icon_url = iconUrl
+    }
 end
 
-function RichEmbed:setImage()
+function RichEmbed:setImage(url, height, width)
+    self.image = {
+        url = url,
+        height = height,
+        width = width
+    }
 end
 
-function RichEmbed:setThumbnail()
+function RichEmbed:setThumbnail(url, height, width)
+    self.thumbnail = {
+        url = url,
+        height = height,
+        width = width
+    }
 end
 
 function RichEmbed:setAuthor(name, url, iconUrl)
-    -- author.name is limited to 256 characters
     if name then
         assert(string.len(name) <= 256, "Name cannot be longer than 256 characters.")
     end
 
-    local author = self.author or {
+    self.author = {
         name = name,
         url = url,
         icon_url = iconUrl
     }
-
-    self.author = author
 end
 
 function RichEmbed:addField(name, value, inline)
