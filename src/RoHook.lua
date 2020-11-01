@@ -38,7 +38,8 @@ function RoHook:send(data)
         request.embeds = {data}
 
     elseif data.ClassName == "Message" then
-        print("Sending Message")
+        request.embeds = data.embeds or {}
+        request.content = data.content
     end
 
     local success, res = pcall(function()
