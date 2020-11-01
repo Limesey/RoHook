@@ -20,22 +20,22 @@ function RoHook.new(url, username, avatar)
     return self
 end
 
-function RoHook:setUsername()
-    --
+function RoHook:setUsername(username)
+    self.username = username
 end
 
 function RoHook:setAvatar(url)
+    self.avatarUrl = url
 end
 
 function RoHook:send(data)
-    local request = nil
+    local request = {
+        username = self.username,
+        avatar_url = self.avatarUrl
+    }
 
     if data.ClassName == "RichEmbed" then
-        request = {
-            embeds = {data},
-        }
-
-        print("Sending RichEmbed")
+        request.embeds = {data}
 
     elseif data.ClassName == "Message" then
         print("Sending Message")
