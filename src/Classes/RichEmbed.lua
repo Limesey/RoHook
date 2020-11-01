@@ -3,9 +3,6 @@ RichEmbed.ClassName = "RichEmbed"
 RichEmbed.__index = RichEmbed
 
 function RichEmbed.new(title, description)
-    -- Title is limited to 256 characters
-    -- Description is limited to 2048 characters
-
     if title then
         assert(string.len(title) <= 256, "Title cannot be longer than 256 characters.")
     end
@@ -24,7 +21,8 @@ function RichEmbed.new(title, description)
     return self
 end
 
-function RichEmbed:setTimestmap()
+function RichEmbed:setTimestamp()
+    self.timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ")
 end
 
 function RichEmbed:setColor()
@@ -40,25 +38,27 @@ end
 function RichEmbed:setThumbnail()
 end
 
-function RichEmbed:setAuthor()
+function RichEmbed:setAuthor(name, url, iconUrl)
     -- author.name is limited to 256 characters
-end
-
-function RichEmbed:addField(name, value, inline)
-    -- 25 fields at most
-    -- feld.name is limited to 256 characters
-    -- field.value is limited to 1024
-
     if name then
         assert(string.len(name) <= 256, "Name cannot be longer than 256 characters.")
     end
 
-    if value then
-        assert(string.len(value) <= 1024, "Value cannot be longer than 1024 characters.")
-    end
+    local author = self.author or {
+        name = name,
+        url = url,
+        icon_url = iconUrl
+    }
+
+    self.author = author
+end
+
+function RichEmbed:addField(name, value, inline)
+    assert(name and value, "Name and Value cannot be nil.")
+    assert(string.len(name) <= 256, "Name cannot be longer than 256 characters.")
+    assert(string.len(value) <= 1024, "Value cannot be longer than 1024 characters.")
 
     local fields = self.fields or {}
-    print(#fields)
     assert(#fields + 1 <= 25, "RichEmbed cannot contain more than 25 fields.")
     
     local field = {
