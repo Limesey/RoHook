@@ -1,3 +1,11 @@
+--    Norbunny
+--    November 1, 2020
+
+--[[
+    Message.new(content: string) - Creates a new message
+    Message.addEmbed(embed: RichEmbed) - Attaches a RichEmbed to the message
+]]
+
 local Message = {}
 Message.ClassName = "Message"
 Message.__index = Message

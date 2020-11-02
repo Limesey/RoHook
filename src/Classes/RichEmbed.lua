@@ -1,3 +1,21 @@
+--[[
+    RichEmbed.new(title: string, description: string) - Creates a new RichEmbed
+
+    RichEmbed:setTimestamp() - Sets the RichEmbed's timestamp
+
+    RichEmbed:setColor(color: RGB) - Sets the RichEmbed's color
+
+    RichEmbed:setFooter(text: string, iconUrl: string) - Sets the RichEmbed footer's text & icon
+
+    RichEmbed:setImage(url: string, height: int, width: int) - Sets the RichEmbed's image & its resolution
+
+    RichEmbed:setThumbnail(url: string, height: int, width: int) - Sets the RichEmbed's thumbnail & its resolution
+    
+    RichEmbed:setAuthor(name: string, url: string, iconUrl: string) - Sets the RichEmbed's author name, url & icon
+
+    RichEmbed:addField(name: string, value: string, inline: boolean) - Adds a field to the RichEmbed with the arguments passed
+]]
+
 local RichEmbed = {}
 RichEmbed.ClassName = "RichEmbed"
 RichEmbed.__index = RichEmbed

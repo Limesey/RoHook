@@ -1,6 +1,18 @@
 --    Norbunny
 --    November 1, 2020
 
+--[[
+    RoHook.new(url: string, username: string, avatar: string) - Creates a new RoHook instance
+    
+    RoHook:setUsername(username: string) - Sets the webhook's username
+
+    RoHook:setAvatar(url: string) - Sets the webhook's avatar
+
+    RoHook:send(data: RichEmbed) - Sends a RichEmbed
+
+    RoHook:send(data: Message) - Sends a Message
+]]
+
 local httpService = game:GetService("HttpService")
 
 local RoHook = {}
