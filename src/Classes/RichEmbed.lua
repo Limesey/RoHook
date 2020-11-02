@@ -1,3 +1,6 @@
+--    Norbunny
+--    November 1, 2020
+
 --[[
     RichEmbed.new(title: string, description: string) - Creates a new RichEmbed
 
