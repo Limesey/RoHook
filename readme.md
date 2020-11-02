@@ -1,5 +1,5 @@
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/A0A4247DU)
-[![Discord](https://discord.com/invite/X7NFTtYeSC)](assets/discord_logo.svg)
+[![Discord](https://discord.com/invite/X7NFTtYeSC)](https://github.com/Limesey/RoHook/blob/master/assets/discord_logo.svg)
 
 # RoHook
 
