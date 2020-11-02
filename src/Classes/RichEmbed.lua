@@ -47,6 +47,7 @@ function RichEmbed:setTimestamp()
 end
 
 function RichEmbed:setColor(rgb)
+    assert(rgb, "Color cannot be nil")
     self.color = rgb.R * 65536 + rgb.G * 256 + rgb.B
 end
 
