@@ -12,7 +12,7 @@ Message.__index = Message
 
 function Message.new(content)
     assert(content, "Content cannot be nil.")
-    assert(string.len(content), "Content must not exceed 2000 characters.")
+    assert(string.len(content) <= 2000, "Content must not exceed 2000 characters.")
 
     local self = {
         content = content
