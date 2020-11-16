@@ -1,4 +1,4 @@
-[![Discord](assets/discord_logo.png)](https://discord.gg/X7NFTtYeSC [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/A0A4247DU)
+[![Discord](assets/discord_logo.png)](https://discord.gg/X7NFTtYeSC)[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/A0A4247DU)
 
 # RoHook
 
